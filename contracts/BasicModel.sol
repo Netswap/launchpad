@@ -252,7 +252,7 @@ contract BasicModel is Ownable {
 
     function depositSaleToken(uint256 _pid) external onlyAdmin onlyPadAdmin(_pid) {
         PadInfo storage pad = padInfo[_pid];
-        pad.saleToken.safeTransfer(address(padVault[_pid].saleTokenVault), pad.salesAmount);
+        pad.saleToken.safeTransferFrom(msg.sender, address(padVault[_pid].saleTokenVault), pad.salesAmount);
     }
 
     function withdrawRemainingSaleToken(uint256 _pid, address _recipient) external onlyAdmin onlyPadAdmin(_pid) {
