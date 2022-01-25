@@ -189,6 +189,12 @@ contract UnlimitedModel is Ownable {
             pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price));
             pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price));
         }
+        padVault[_pid].saleTokenVault.withdrawTo(msg.sender, user.allocation);
+        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price));
+        pad.stakedToken.safeTransfer(msg.sender, user.stakeAmount);
+        emit Claim(msg.sender, _pid, user.stakeAmount);
+        user.stakeAmount = 0;
+        user.allocation = 0;
     }
 
     /* ========== VIEW FUNCTIONS ========== */
