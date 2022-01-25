@@ -102,13 +102,18 @@ contract BasicModel is Ownable {
         emit StakeToGetAlloc(msg.sender, _pid, _amount);
     }
 
-    // Users can claim back staked token during staking period or after cashing end time
+    // Users can claim back staked token during staking period, or failed after staking period, or after cashing end time
     function claim(uint256 _pid, uint256 _amount) public {
         PadInfo storage pad = padInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.stakeAmount >= _amount, "wrong amount");
         // during staking period
         if (block.timestamp < padTime[_pid].stakingEndTime) {
+            user.stakeAmount = user.stakeAmount.sub(_amount);
+            pad.stakedToken.safeTransfer(msg.sender, _amount);
+            emit Claim(msg.sender, _pid, _amount);
+            return;
+        } else if (block.timestamp > padTime[_pid].stakingEndTime && padStatus(_pid) == PadStatus.Fail) {
             user.stakeAmount = user.stakeAmount.sub(_amount);
             pad.stakedToken.safeTransfer(msg.sender, _amount);
             emit Claim(msg.sender, _pid, _amount);
@@ -132,6 +137,7 @@ contract BasicModel is Ownable {
         pad.cashedAmount = pad.cashedAmount.add(user.allocation);
         if (address(pad.paymentToken) != address(0)) {
             pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price));
+            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price));
         }
         padVault[_pid].saleTokenVault.withdrawTo(msg.sender, user.allocation);
         emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price));
