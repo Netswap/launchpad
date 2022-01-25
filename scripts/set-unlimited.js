@@ -1,5 +1,5 @@
 const hre = require("hardhat");
-const fs = require('fs');
+const unlimited = require('./unlimited-model-588.json');
 
 // TST
 const saleToken = '0x1EEfEA9DdB5C2eb16D8422805DB8834677b59425';
@@ -39,7 +39,7 @@ async function main() {
 
     const UnlimitedModelFactory = await hre.ethers.getContractFactory('UnlimitedModel');
 
-    const UnlimitedModel = await UnlimitedModelFactory.attach('0xab6FDfBc9774f4Ce97218AC8110591fa9Ad1C072');
+    const UnlimitedModel = await UnlimitedModelFactory.attach(unlimited.UnlimitedModel);
 
     await UnlimitedModel.connect(signer).addPad(
         params.tokens,

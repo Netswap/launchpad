@@ -1,5 +1,5 @@
 const hre = require("hardhat");
-const fs = require('fs');
+const basic = require('./basic-model-588.json');
 
 // TST
 const saleToken = '0x1EEfEA9DdB5C2eb16D8422805DB8834677b59425';
@@ -40,7 +40,7 @@ async function main() {
 
     const BasicModelFactory = await hre.ethers.getContractFactory('BasicModel');
 
-    const BasicModel = await BasicModelFactory.attach('0xe050cDEA280c277C7c8d51e5e81e6151192369a6');
+    const BasicModel = await BasicModelFactory.attach(basic.BasicModel);
 
     await BasicModel.connect(signer).addPad(
         params.tokens,
