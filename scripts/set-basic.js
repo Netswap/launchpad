@@ -22,9 +22,9 @@ async function main() {
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 10 * 60,
-            20 * 60,
-            20 * 60,
-            20 * 60
+            24 * 60 * 60,
+            24 * 60 * 60,
+            24 * 60 * 60
         ],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
@@ -40,7 +40,7 @@ async function main() {
 
     const BasicModelFactory = await hre.ethers.getContractFactory('BasicModel');
 
-    const BasicModel = await BasicModelFactory.attach('0x876dFa961d6406980efB65b54588Ab22CB0Cb2fe');
+    const BasicModel = await BasicModelFactory.attach('0xe050cDEA280c277C7c8d51e5e81e6151192369a6');
 
     await BasicModel.connect(signer).addPad(
         params.tokens,

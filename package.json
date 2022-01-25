@@ -6,7 +6,8 @@
   "scripts": {
     "test": "hardhat test",
     "compile": "hardhat compile",
-    "deploy-test": "hardhat run scripts/deploy-basic.js --network testnet"
+    "deploy-test": "hardhat run scripts/deploy-basic.js --network testnet",
+    "set-test": "hardhat run scripts/set-basic.js --network testnet"
   },
   "license": "MIT",
   "devDependencies": {

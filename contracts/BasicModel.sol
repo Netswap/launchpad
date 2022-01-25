@@ -181,6 +181,38 @@ contract BasicModel is Ownable {
         return PadStatus.Fail;
     }
 
+    function getPadTime(uint256 _pid) 
+        public 
+        view 
+        returns (
+            uint256 startTime, 
+            uint256 stakingEndTime, 
+            uint256 vestingEndTime, 
+            uint256 cashingEndTime
+        ) 
+    {
+        startTime = padTime[_pid].startTime;
+        stakingEndTime = padTime[_pid].stakingEndTime;
+        vestingEndTime = padTime[_pid].vestingEndTime;
+        cashingEndTime = padTime[_pid].cashingEndTime;
+    }
+
+    function getPadVault(uint256 _pid)
+        public 
+        view 
+        returns (
+            address saleTokenVault, 
+            address raisedTokenVault
+        ) 
+    {
+        saleTokenVault = address(padVault[_pid].saleTokenVault);
+        raisedTokenVault = address(padVault[_pid].raisedTokenVault);
+    }
+
+    function getPids(address _saleToken) public view returns (uint256[] memory) {
+        return pidsOfSaleToken[_saleToken];
+    }
+
     /* ========== RESTRICTED FUNCTIONS ========== */
 
     /**
