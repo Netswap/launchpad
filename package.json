@@ -7,7 +7,9 @@
     "test": "hardhat test",
     "compile": "hardhat compile",
     "deploy-test": "hardhat run scripts/deploy-basic.js --network testnet",
-    "set-test": "hardhat run scripts/set-basic.js --network testnet"
+    "set-test": "hardhat run scripts/set-basic.js --network testnet",
+    "deploy-unlimted-test": "hardhat run scripts/deploy-unlimited.js --network testnet",
+    "set-unlimted-test": "hardhat run scripts/set-unlimited.js --network testnet"
   },
   "license": "MIT",
   "devDependencies": {

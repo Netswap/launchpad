@@ -110,10 +110,13 @@ contract BasicModel is Ownable {
         // during staking period
         if (block.timestamp < padTime[_pid].stakingEndTime) {
             user.stakeAmount = user.stakeAmount.sub(_amount);
+            // only need to sub pad.stakedAmount during staking period
+            pad.stakedAmount = pad.stakedAmount.sub(_amount);
             pad.stakedToken.safeTransfer(msg.sender, _amount);
             emit Claim(msg.sender, _pid, _amount);
             return;
         } else if (block.timestamp > padTime[_pid].stakingEndTime && padStatus(_pid) == PadStatus.Fail) {
+            // pad failed after staking period
             user.stakeAmount = user.stakeAmount.sub(_amount);
             pad.stakedToken.safeTransfer(msg.sender, _amount);
             emit Claim(msg.sender, _pid, _amount);
@@ -156,7 +159,7 @@ contract BasicModel is Ownable {
     function calcAllocation(uint256 _pid) public view returns (uint256) {
         PadInfo storage pad = padInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
-        return user.stakeAmount.mul(pad.salesAmount).div(pad.stakedAmount);
+        return pad.stakedAmount > 0 ? user.stakeAmount.mul(pad.salesAmount).div(pad.stakedAmount) : 0;
     }
 
     function padPeriod(uint256 _pid) public view returns (PadPeriod) {
