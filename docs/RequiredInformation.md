@@ -16,7 +16,7 @@
 - Do you want a whitelist pad? If so, please provide the website url of your whitelist campagin.
 - Do you want to be your pad admin? (We can be delegated to be the pad admin)
 - Which payment token you want to raise? (Choose from m.USDT and m.USDC for now)
-- Which staked token you want to use? (Only Metis and NETT are supported now, we recommend both)
+- Do you want Metis to be the staked token for a specific pad? (Only Metis and NETT are supported now, NETT is required, Metis is optional)
 - The start time of your pads (The time point of staking period started)
 - The duration of staking period (at least 1 day)
 - The duration of vesting period (at least 1 day)
