@@ -88,6 +88,7 @@ contract UnlimitedModel is Ownable {
     mapping(uint256 => PadVault) private padVault;
     mapping(uint256 => uint256) public multiplierFeeRate;
     address public feeRecipient;
+    uint256 constant public PRICE_DECIMALS = 1e18;
 
     constructor() public {
         /**
@@ -184,13 +185,13 @@ contract UnlimitedModel is Ownable {
             } else if (multiplier > 1500) {
                 feeRate = multiplierFeeRate[1500];
             }
-            uint256 fees = user.allocation.mul(pad.price).mul(feeRate).div(10000);
+            uint256 fees = user.allocation.mul(pad.price).mul(feeRate).div(10000).div(PRICE_DECIMALS);
             pad.paymentToken.safeTransferFrom(msg.sender, feeRecipient, fees);
-            pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price));
-            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price));
+            pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price).div(PRICE_DECIMALS));
+            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price).div(PRICE_DECIMALS));
         }
         padVault[_pid].saleTokenVault.withdrawTo(msg.sender, user.allocation);
-        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price));
+        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price).div(PRICE_DECIMALS));
         pad.stakedToken.safeTransfer(msg.sender, user.stakeAmount);
         emit Claim(msg.sender, _pid, user.stakeAmount);
         user.stakeAmount = 0;

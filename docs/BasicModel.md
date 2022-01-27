@@ -125,6 +125,12 @@ This is a mapping stored `UserInfo` for each users corresponding to a specific p
 
 This is a mapping to check if a specific address whitelisted to a specific pad.
 
+### PRICE_DECIMALS
+
+> `uint256 constant public PRICE_DECIMALS = 1e18;`
+
+This is decimals used for sale token price, we define this constant as 10^18.
+
 ## MUTATIVE FUNCTIONS
 
 ### stake

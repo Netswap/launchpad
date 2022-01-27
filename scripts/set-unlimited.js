@@ -28,7 +28,8 @@ async function main() {
         ],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
-        _price: '2',
+        // $2 * 1e18
+        _price: '2000000000000000000',
         _minStakedUserAmount: 2,
         // 100 NETT
         _minStakedCap: '100000000000000000000',

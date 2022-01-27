@@ -141,6 +141,12 @@ This is a mapping to store fee rate of differnt multipliers.
 
 This is the fees recipient address.
 
+### PRICE_DECIMALS
+
+> `uint256 constant public PRICE_DECIMALS = 1e18;`
+
+This is decimals used for sale token price, we define this constant as 10^18.
+
 ## CONSTRUCTOR
 ```solidity
 constructor() public {

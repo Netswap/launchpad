@@ -84,6 +84,7 @@ contract BasicModel is Ownable {
     mapping(uint256 => mapping(address => bool)) public whitelist;
     mapping(uint256 => PadTime) private padTime;
     mapping(uint256 => PadVault) private padVault;
+    uint256 constant public PRICE_DECIMALS = 1e18;
 
     constructor() public {}
 
@@ -139,11 +140,11 @@ contract BasicModel is Ownable {
         require(user.allocation > 0, "not enough allocation to cash");
         pad.cashedAmount = pad.cashedAmount.add(user.allocation);
         if (address(pad.paymentToken) != address(0)) {
-            pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price));
-            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price));
+            pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price).div(PRICE_DECIMALS));
+            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price).div(PRICE_DECIMALS));
         }
         padVault[_pid].saleTokenVault.withdrawTo(msg.sender, user.allocation);
-        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price));
+        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price).div(PRICE_DECIMALS));
         pad.stakedToken.safeTransfer(msg.sender, user.stakeAmount);
         emit Claim(msg.sender, _pid, user.stakeAmount);
         user.stakeAmount = 0;
