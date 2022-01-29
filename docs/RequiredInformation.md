@@ -19,7 +19,7 @@
 - Do you want Metis to be the staked token for a specific pad? (Only Metis and NETT are supported now, NETT is required, Metis is optional)
 - The start time of your pads (The time point of staking period started)
 - The duration of staking period (at least 1 day)
-- The duration of vesting period (at least 1 day)
+- The duration of vesting period (at least 7 days)
 - The duration of cashing period (at least 1 day)
 - Total sales amount of project token. If there are multiple pads you want to add, please provide the breakdown of each pads.
 - If you want a BasicModel pad, please provide the maximum staked cap for per users.
