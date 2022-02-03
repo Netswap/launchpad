@@ -119,6 +119,7 @@ async function main() {
 
     const UnlimitedModel = await UnlimitedModelFactory.attach(unlimited.UnlimitedModel);
 
+    console.log('adding pad using NETT without whitelist...');
     await UnlimitedModel.connect(signer).addPad(
         unlimited_nett_without_whitelist.tokens,
         unlimited_nett_without_whitelist.adminAddress,
@@ -132,6 +133,7 @@ async function main() {
     );
     console.log('added pad using NETT without whitelist');
 
+    console.log('adding pad using NETT with whitelist...');
     await UnlimitedModel.connect(signer).addPad(
         unlimited_nett_with_whitelist.tokens,
         unlimited_nett_with_whitelist.adminAddress,
@@ -145,6 +147,7 @@ async function main() {
     );
     console.log('added pad using NETT with whitelist');
 
+    console.log('adding pad using Metis without whitelist...');
     await UnlimitedModel.connect(signer).addPad(
         unlimited_metis_without_whitelist.tokens,
         unlimited_metis_without_whitelist.adminAddress,
@@ -158,6 +161,7 @@ async function main() {
     );
     console.log('added pad using Metis without whitelist');
 
+    console.log('adding pad using Metis with whitelist...');
     await UnlimitedModel.connect(signer).addPad(
         unlimited_metis_with_whitelist.tokens,
         unlimited_metis_with_whitelist.adminAddress,

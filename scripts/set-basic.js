@@ -123,6 +123,7 @@ async function main() {
 
     const BasicModel = await BasicModelFactory.attach(basic.BasicModel);
 
+    console.log('adding pad using NETT without whitelist...');
     await BasicModel.connect(signer).addPad(
         basic_nett_without_whitelist.tokens,
         basic_nett_without_whitelist.adminAddress,
@@ -136,6 +137,7 @@ async function main() {
     );
     console.log('added pad using NETT without whitelist');
 
+    console.log('adding pad using NETT with whitelist...');
     await BasicModel.connect(signer).addPad(
         basic_nett_with_whitelist.tokens,
         basic_nett_with_whitelist.adminAddress,
@@ -162,6 +164,7 @@ async function main() {
     );
     console.log('added pad using Metis without whitelist');
 
+    console.log('adding pad using Metis with whitelist...');
     await BasicModel.connect(signer).addPad(
         basic_metis_with_whitelist.tokens,
         basic_metis_with_whitelist.adminAddress,
