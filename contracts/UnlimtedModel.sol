@@ -136,7 +136,7 @@ contract UnlimitedModel is Ownable {
         // during staking period
         if (block.timestamp < padTime[_pid].stakingEndTime) {
             user.stakeAmount = user.stakeAmount.sub(_amount);
-            // only need to sub pad.stakedAmount during staking period
+            // only need to sub pad.stakedAmount and pad.stakedUserAmount during staking period
             pad.stakedAmount = pad.stakedAmount.sub(_amount);
             if (user.stakeAmount == 0) {
                 pad.stakedUserAmount -= 1;
@@ -147,9 +147,6 @@ contract UnlimitedModel is Ownable {
         } else if (block.timestamp > padTime[_pid].stakingEndTime && padStatus(_pid) == PadStatus.Fail) {
             // pad failed after staking period
             user.stakeAmount = user.stakeAmount.sub(_amount);
-            if (user.stakeAmount == 0) {
-                pad.stakedUserAmount -= 1;
-            }
             pad.stakedToken.safeTransfer(msg.sender, _amount);
             emit Claim(msg.sender, _pid, _amount);
             return;

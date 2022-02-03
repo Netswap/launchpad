@@ -58,6 +58,8 @@ struct PadInfo{
     uint256 salesAmount;
     // Total amount of staked token
     uint256 stakedAmount;
+    // Total amount of staked users
+    uint256 stakedUserAmount;
     // Total amount of cashed sale token
     uint256 cashedAmount;
     // Total amount of raised payment token

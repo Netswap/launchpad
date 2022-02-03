@@ -53,6 +53,8 @@ contract BasicModel is Ownable {
         uint256 salesAmount;
         // Total amount of staked token
         uint256 stakedAmount;
+        // Total amount of staked users
+        uint256 stakedUserAmount;
         // Total amount of cashed sale token
         uint256 cashedAmount;
         // Total amount of raised payment token
@@ -98,6 +100,9 @@ contract BasicModel is Ownable {
         require(_amount > 0, "invalid amount");
         require(pad.stakedAmount + _amount <= pad.maxStakedCap, "exceeds max total staked amount");
         require(user.stakeAmount + _amount <= pad.maxPerUser, "exceeds max staked amount per user");
+        if (user.stakeAmount == 0) {
+            pad.stakedUserAmount += 1;
+        }
         user.stakeAmount = user.stakeAmount.add(_amount);
         pad.stakedAmount = pad.stakedAmount.add(_amount);
         pad.stakedToken.safeTransferFrom(msg.sender, address(this), _amount);
@@ -112,8 +117,11 @@ contract BasicModel is Ownable {
         // during staking period
         if (block.timestamp < padTime[_pid].stakingEndTime) {
             user.stakeAmount = user.stakeAmount.sub(_amount);
-            // only need to sub pad.stakedAmount during staking period
+            // only need to sub pad.stakedAmount and pad.stakedUserAmount during staking period
             pad.stakedAmount = pad.stakedAmount.sub(_amount);
+            if (user.stakeAmount == 0) {
+                pad.stakedUserAmount -= 1;
+            }
             pad.stakedToken.safeTransfer(msg.sender, _amount);
             emit Claim(msg.sender, _pid, _amount);
             return;
@@ -245,6 +253,7 @@ contract BasicModel is Ownable {
                 stakedToken: IERC20(tokens[2]),
                 salesAmount: _salesAmount,
                 stakedAmount: 0,
+                stakedUserAmount: 0,
                 cashedAmount: 0,
                 raisedAmount: 0,
                 maxPerUser: _maxPerUser,
