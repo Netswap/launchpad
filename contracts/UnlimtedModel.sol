@@ -117,7 +117,8 @@ contract UnlimitedModel is Ownable {
         PadInfo storage pad = padInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(padTime[_pid].startTime < block.timestamp, "pad not opened");
-        require(padTime[_pid].cashingEndTime > block.timestamp, "pad ended");
+        require(padTime[_pid].stakingEndTime > block.timestamp, "staking period ended");
+        require(_amount > 0, "invalid amount");
         if (user.stakeAmount == 0) {
             pad.stakedUserAmount += 1;
         }

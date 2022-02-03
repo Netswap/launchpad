@@ -94,7 +94,8 @@ contract BasicModel is Ownable {
         PadInfo storage pad = padInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(padTime[_pid].startTime < block.timestamp, "pad not opened");
-        require(padTime[_pid].cashingEndTime > block.timestamp, "pad ended");
+        require(padTime[_pid].stakingEndTime > block.timestamp, "staking period ended");
+        require(_amount > 0, "invalid amount");
         require(pad.stakedAmount + _amount <= pad.maxStakedCap, "exceeds max total staked amount");
         require(user.stakeAmount + _amount <= pad.maxPerUser, "exceeds max staked amount per user");
         user.stakeAmount = user.stakeAmount.add(_amount);
