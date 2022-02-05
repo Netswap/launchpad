@@ -28,7 +28,7 @@ async function main() {
             5 * 60,
             30 * 60
         ],
-        decimals: [1e18, 1e6],
+        decimals: ['1000000000000000000', '1000000'],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 NETT
@@ -55,7 +55,7 @@ async function main() {
             5 * 60,
             30 * 60
         ],
-        decimals: [1e18, 1e6],
+        decimals: ['1000000000000000000', '1000000'],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 NETT
@@ -82,7 +82,7 @@ async function main() {
             5 * 60,
             30 * 60
         ],
-        decimals: [1e18, 1e6],
+        decimals: ['1000000000000000000', '1000000'],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 Metis
@@ -109,7 +109,7 @@ async function main() {
             5 * 60,
             30 * 60
         ],
-        decimals: [1e18, 1e6],
+        decimals: ['1000000000000000000', '1000000'],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 Metis
