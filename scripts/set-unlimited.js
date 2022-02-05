@@ -23,11 +23,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // $2 * 1e18
@@ -48,11 +49,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // $2 * 1e18
@@ -73,11 +75,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // $1 * 1e18
@@ -98,11 +101,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60,
-            24 * 60 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // $1 * 1e18
@@ -115,6 +119,52 @@ async function main() {
         _isWhitelist: true
     }
 
+    // console.log(
+    //     unlimited_nett_without_whitelist.tokens,
+    //     unlimited_nett_without_whitelist.adminAddress,
+    //     unlimited_nett_without_whitelist.time,
+    //     unlimited_nett_without_whitelist._salesAmount,
+    //     unlimited_nett_without_whitelist._price,
+    //     unlimited_nett_without_whitelist._minStakedUserAmount,
+    //     unlimited_nett_without_whitelist._minStakedCap,
+    //     unlimited_nett_without_whitelist._maxStakedCap,
+    //     unlimited_nett_without_whitelist._isWhitelist
+    // )
+    // console.log(
+    //     unlimited_nett_with_whitelist.tokens,
+    //     unlimited_nett_with_whitelist.adminAddress,
+    //     unlimited_nett_with_whitelist.time,
+    //     unlimited_nett_with_whitelist._salesAmount,
+    //     unlimited_nett_with_whitelist._price,
+    //     unlimited_nett_with_whitelist._minStakedUserAmount,
+    //     unlimited_nett_with_whitelist._minStakedCap,
+    //     unlimited_nett_with_whitelist._maxStakedCap,
+    //     unlimited_nett_with_whitelist._isWhitelist
+    // )
+    // console.log(
+    //     unlimited_metis_without_whitelist.tokens,
+    //     unlimited_metis_without_whitelist.adminAddress,
+    //     unlimited_metis_without_whitelist.time,
+    //     unlimited_metis_without_whitelist._salesAmount,
+    //     unlimited_metis_without_whitelist._price,
+    //     unlimited_metis_without_whitelist._minStakedUserAmount,
+    //     unlimited_metis_without_whitelist._minStakedCap,
+    //     unlimited_metis_without_whitelist._maxStakedCap,
+    //     unlimited_metis_without_whitelist._isWhitelist
+    // )
+
+    // console.log(
+    //     unlimited_metis_with_whitelist.tokens,
+    //     unlimited_metis_with_whitelist.adminAddress,
+    //     unlimited_metis_with_whitelist.time,
+    //     unlimited_metis_with_whitelist._salesAmount,
+    //     unlimited_metis_with_whitelist._price,
+    //     unlimited_metis_with_whitelist._minStakedUserAmount,
+    //     unlimited_metis_with_whitelist._minStakedCap,
+    //     unlimited_metis_with_whitelist._maxStakedCap,
+    //     unlimited_metis_with_whitelist._isWhitelist
+    // )
+
     const UnlimitedModelFactory = await hre.ethers.getContractFactory('UnlimitedModel');
 
     const UnlimitedModel = await UnlimitedModelFactory.attach(unlimited.UnlimitedModel);
@@ -124,6 +174,7 @@ async function main() {
         unlimited_nett_without_whitelist.tokens,
         unlimited_nett_without_whitelist.adminAddress,
         unlimited_nett_without_whitelist.time,
+        unlimited_nett_without_whitelist.decimals,
         unlimited_nett_without_whitelist._salesAmount,
         unlimited_nett_without_whitelist._price,
         unlimited_nett_without_whitelist._minStakedUserAmount,
@@ -138,6 +189,7 @@ async function main() {
         unlimited_nett_with_whitelist.tokens,
         unlimited_nett_with_whitelist.adminAddress,
         unlimited_nett_with_whitelist.time,
+        unlimited_nett_with_whitelist.decimals,
         unlimited_nett_with_whitelist._salesAmount,
         unlimited_nett_with_whitelist._price,
         unlimited_nett_with_whitelist._minStakedUserAmount,
@@ -152,6 +204,7 @@ async function main() {
         unlimited_metis_without_whitelist.tokens,
         unlimited_metis_without_whitelist.adminAddress,
         unlimited_metis_without_whitelist.time,
+        unlimited_metis_without_whitelist.decimals,
         unlimited_metis_without_whitelist._salesAmount,
         unlimited_metis_without_whitelist._price,
         unlimited_metis_without_whitelist._minStakedUserAmount,
@@ -166,6 +219,7 @@ async function main() {
         unlimited_metis_with_whitelist.tokens,
         unlimited_metis_with_whitelist.adminAddress,
         unlimited_metis_with_whitelist.time,
+        unlimited_metis_with_whitelist.decimals,
         unlimited_metis_with_whitelist._salesAmount,
         unlimited_metis_with_whitelist._price,
         unlimited_metis_with_whitelist._minStakedUserAmount,

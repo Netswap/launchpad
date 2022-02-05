@@ -86,6 +86,8 @@ contract UnlimitedModel is Ownable {
     mapping(uint256 => mapping(address => bool)) public whitelist;
     mapping(uint256 => PadTime) private padTime;
     mapping(uint256 => PadVault) private padVault;
+    mapping(uint256 => uint256) public padSaleTokenDecimals;
+    mapping(uint256 => uint256) public padPaymentTokenDecimals;
     mapping(uint256 => uint256) public multiplierFeeRate;
     address public feeRecipient;
     uint256 constant public PRICE_DECIMALS = 1e18;
@@ -167,6 +169,7 @@ contract UnlimitedModel is Ownable {
         user.allocation = calcAllocation(_pid);
         require(user.allocation > 0, "not enough allocation to cash");
         pad.cashedAmount = pad.cashedAmount.add(user.allocation);
+        uint256 funds = 0;
         if (address(pad.paymentToken) != address(0)) {
             uint256 multiplier = pad.stakedAmount.div(pad.maxStakedCap);
             uint256 feeRate = multiplierFeeRate[0];
@@ -183,13 +186,22 @@ contract UnlimitedModel is Ownable {
             } else if (multiplier > 1500) {
                 feeRate = multiplierFeeRate[1500];
             }
-            uint256 fees = user.allocation.mul(pad.price).mul(feeRate).div(10000).div(PRICE_DECIMALS);
+            funds = user.allocation
+                    .mul(pad.price)
+                    .mul(padPaymentTokenDecimals[_pid])
+                    .div(PRICE_DECIMALS)
+                    .div(padSaleTokenDecimals[_pid]);
+            uint256 fees = funds.mul(feeRate).div(10000);
             pad.paymentToken.safeTransferFrom(msg.sender, feeRecipient, fees);
-            pad.paymentToken.safeTransferFrom(msg.sender, address(padVault[_pid].raisedTokenVault), user.allocation.mul(pad.price).div(PRICE_DECIMALS));
-            pad.raisedAmount = pad.raisedAmount.add(user.allocation.mul(pad.price).div(PRICE_DECIMALS));
+            pad.paymentToken.safeTransferFrom(
+                msg.sender, 
+                address(padVault[_pid].raisedTokenVault), 
+                funds
+            );
+            pad.raisedAmount = pad.raisedAmount.add(funds);
         }
         padVault[_pid].saleTokenVault.withdrawTo(msg.sender, user.allocation);
-        emit Cash(msg.sender, _pid, user.allocation, user.allocation.mul(pad.price).div(PRICE_DECIMALS));
+        emit Cash(msg.sender, _pid, user.allocation, funds);
         pad.stakedToken.safeTransfer(msg.sender, user.stakeAmount);
         emit Claim(msg.sender, _pid, user.stakeAmount);
         user.stakeAmount = 0;
@@ -273,11 +285,13 @@ contract UnlimitedModel is Ownable {
     /**
      * tokens array represents sale token, payment token and staked token order by index
      * time array represents start time, staking period, vesting period and cashing period order by index
+     * _decimals array represents sale token and payment token decimals order by index
      */
      function addPad(
         address[] memory tokens,
         address _adminAddress,
         uint256[] memory time,
+        uint256[] memory _decimals,
         uint256 _salesAmount,
         uint256 _price,
         uint256 _minStakedUserAmount,
@@ -318,6 +332,9 @@ contract UnlimitedModel is Ownable {
             _maxStakedCap,
             _isWhitelist
         );
+
+        padSaleTokenDecimals[pid] = _decimals[0];
+        padPaymentTokenDecimals[pid] = _decimals[1];
 
         padVault[pid].saleTokenVault = new SaleTokenVault(tokens[0], msg.sender);
         padVault[pid].raisedTokenVault = new RaisedTokenVault(tokens[1], msg.sender);

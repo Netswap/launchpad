@@ -23,11 +23,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            20 * 60,
-            20 * 60,
-            20 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 NETT
@@ -49,11 +50,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            20 * 60,
-            20 * 60,
-            20 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 NETT
@@ -75,11 +77,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            20 * 60,
-            20 * 60,
-            20 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 Metis
@@ -101,11 +104,12 @@ async function main() {
         ],
         adminAddress: signer.address,
         time: [
-            Math.round(Date.now() / 1000) + 10 * 60,
-            20 * 60,
-            20 * 60,
-            20 * 60
+            Math.round(Date.now() / 1000) + 5 * 60,
+            30 * 60,
+            5 * 60,
+            30 * 60
         ],
+        decimals: [1e18, 1e6],
         // 10000 TST
         _salesAmount: '10000000000000000000000',
         // 100 Metis
@@ -119,6 +123,53 @@ async function main() {
         _isWhitelist: true
     };
 
+    // console.log(
+    //     basic_nett_without_whitelist.tokens,
+    //     basic_nett_without_whitelist.adminAddress,
+    //     basic_nett_without_whitelist.time,
+    //     basic_nett_without_whitelist._salesAmount,
+    //     basic_nett_without_whitelist._maxPerUser,
+    //     basic_nett_without_whitelist._price,
+    //     basic_nett_without_whitelist._minStakedCap,
+    //     basic_nett_without_whitelist._maxStakedCap,
+    //     basic_nett_without_whitelist._isWhitelist
+    // );
+    // console.log(
+    //     basic_nett_with_whitelist.tokens,
+    //     basic_nett_with_whitelist.adminAddress,
+    //     basic_nett_with_whitelist.time,
+    //     basic_nett_with_whitelist._salesAmount,
+    //     basic_nett_with_whitelist._maxPerUser,
+    //     basic_nett_with_whitelist._price,
+    //     basic_nett_with_whitelist._minStakedCap,
+    //     basic_nett_with_whitelist._maxStakedCap,
+    //     basic_nett_with_whitelist._isWhitelist
+    // );
+
+    // console.log(
+    //     basic_metis_without_whitelist.tokens,
+    //     basic_metis_without_whitelist.adminAddress,
+    //     basic_metis_without_whitelist.time,
+    //     basic_metis_without_whitelist._salesAmount,
+    //     basic_metis_without_whitelist._maxPerUser,
+    //     basic_metis_without_whitelist._price,
+    //     basic_metis_without_whitelist._minStakedCap,
+    //     basic_metis_without_whitelist._maxStakedCap,
+    //     basic_metis_without_whitelist._isWhitelist
+    // )
+
+    // console.log(
+    //     basic_metis_with_whitelist.tokens,
+    //     basic_metis_with_whitelist.adminAddress,
+    //     basic_metis_with_whitelist.time,
+    //     basic_metis_with_whitelist._salesAmount,
+    //     basic_metis_with_whitelist._maxPerUser,
+    //     basic_metis_with_whitelist._price,
+    //     basic_metis_with_whitelist._minStakedCap,
+    //     basic_metis_with_whitelist._maxStakedCap,
+    //     basic_metis_with_whitelist._isWhitelist
+    // )
+
     const BasicModelFactory = await hre.ethers.getContractFactory('BasicModel');
 
     const BasicModel = await BasicModelFactory.attach(basic.BasicModel);
@@ -128,6 +179,7 @@ async function main() {
         basic_nett_without_whitelist.tokens,
         basic_nett_without_whitelist.adminAddress,
         basic_nett_without_whitelist.time,
+        basic_nett_without_whitelist.decimals,
         basic_nett_without_whitelist._salesAmount,
         basic_nett_without_whitelist._maxPerUser,
         basic_nett_without_whitelist._price,
@@ -142,6 +194,7 @@ async function main() {
         basic_nett_with_whitelist.tokens,
         basic_nett_with_whitelist.adminAddress,
         basic_nett_with_whitelist.time,
+        basic_nett_with_whitelist.decimals,
         basic_nett_with_whitelist._salesAmount,
         basic_nett_with_whitelist._maxPerUser,
         basic_nett_with_whitelist._price,
@@ -155,6 +208,7 @@ async function main() {
         basic_metis_without_whitelist.tokens,
         basic_metis_without_whitelist.adminAddress,
         basic_metis_without_whitelist.time,
+        basic_metis_without_whitelist.decimals,
         basic_metis_without_whitelist._salesAmount,
         basic_metis_without_whitelist._maxPerUser,
         basic_metis_without_whitelist._price,
@@ -169,6 +223,7 @@ async function main() {
         basic_metis_with_whitelist.tokens,
         basic_metis_with_whitelist.adminAddress,
         basic_metis_with_whitelist.time,
+        basic_metis_with_whitelist.decimals,
         basic_metis_with_whitelist._salesAmount,
         basic_metis_with_whitelist._maxPerUser,
         basic_metis_with_whitelist._price,
