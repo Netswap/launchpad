@@ -8,7 +8,7 @@ async function main() {
 
     const TestERC20 = await hre.ethers.getContractFactory('TestERC20');
 
-    const saleToken = await TestERC20.connect(signer).deploy('Test Sale Token', 'TST', 18);
+    const saleToken = await TestERC20.connect(signer).deploy('Test Sale Token 2', 'TST2', 18);
     await saleToken.deployed();
     console.log("sale token depolyed to:", saleToken.address);
 
@@ -18,7 +18,7 @@ async function main() {
 
     console.log(addresses);
 
-    fs.writeFileSync(`${__dirname}/test-sale-token-588.json`, JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(`${__dirname}/test-sale-token-2-588.json`, JSON.stringify(addresses, null, 4));
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,8 +1,8 @@
 const hre = require("hardhat");
 const basic = require('./basic-model-588.json');
 
-// TST
-const TST = '0x1EEfEA9DdB5C2eb16D8422805DB8834677b59425';
+// TST2
+const TST2 = '0x2BD9e5Da0c3cCD017eaCbE7420180FaADFB5a0b7';
 // TUSDT
 const TUSDT = '0xF02Efd44B57d143c38A329dD299683bf24Cf8aE0';
 // NETT
@@ -17,19 +17,19 @@ async function main() {
 
     const basic_nett_without_whitelist = {
         tokens: [
-            TST,
+            TST2,
             TUSDT,
             NETT
         ],
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 5 * 60,
-            30 * 60,
-            5 * 60,
-            30 * 60
+            20 * 60,
+            20 * 60,
+            20 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
-        // 10000 TST
+        // 10000 TST2
         _salesAmount: '10000000000000000000000',
         // 100 NETT
         _maxPerUser: '100000000000000000000',
@@ -44,19 +44,19 @@ async function main() {
 
     const basic_nett_with_whitelist = {
         tokens: [
-            TST,
+            TST2,
             TUSDT,
             NETT
         ],
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 5 * 60,
-            30 * 60,
-            5 * 60,
-            30 * 60
+            20 * 60,
+            20 * 60,
+            20 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
-        // 10000 TST
+        // 10000 TST2
         _salesAmount: '10000000000000000000000',
         // 100 NETT
         _maxPerUser: '100000000000000000000',
@@ -71,7 +71,7 @@ async function main() {
 
     const basic_metis_without_whitelist = {
         tokens: [
-            TST,
+            TST2,
             TUSDT,
             Metis
         ],
@@ -83,7 +83,7 @@ async function main() {
             30 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
-        // 10000 TST
+        // 10000 TST2
         _salesAmount: '10000000000000000000000',
         // 100 Metis
         _maxPerUser: '100000000000000000000',
@@ -98,7 +98,7 @@ async function main() {
 
     const basic_metis_with_whitelist = {
         tokens: [
-            TST,
+            TST2,
             TUSDT,
             Metis
         ],
@@ -110,7 +110,7 @@ async function main() {
             30 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
-        // 10000 TST
+        // 10000 TST2
         _salesAmount: '10000000000000000000000',
         // 100 Metis
         _maxPerUser: '100000000000000000000',
@@ -204,34 +204,35 @@ async function main() {
     );
     console.log('added pad using NETT with whitelist');
 
-    await BasicModel.connect(signer).addPad(
-        basic_metis_without_whitelist.tokens,
-        basic_metis_without_whitelist.adminAddress,
-        basic_metis_without_whitelist.time,
-        basic_metis_without_whitelist.decimals,
-        basic_metis_without_whitelist._salesAmount,
-        basic_metis_without_whitelist._maxPerUser,
-        basic_metis_without_whitelist._price,
-        basic_metis_without_whitelist._minStakedCap,
-        basic_metis_without_whitelist._maxStakedCap,
-        basic_metis_without_whitelist._isWhitelist
-    );
-    console.log('added pad using Metis without whitelist');
+    // console.log('adding pad using Metis without whitelist');
+    // await BasicModel.connect(signer).addPad(
+    //     basic_metis_without_whitelist.tokens,
+    //     basic_metis_without_whitelist.adminAddress,
+    //     basic_metis_without_whitelist.time,
+    //     basic_metis_without_whitelist.decimals,
+    //     basic_metis_without_whitelist._salesAmount,
+    //     basic_metis_without_whitelist._maxPerUser,
+    //     basic_metis_without_whitelist._price,
+    //     basic_metis_without_whitelist._minStakedCap,
+    //     basic_metis_without_whitelist._maxStakedCap,
+    //     basic_metis_without_whitelist._isWhitelist
+    // );
+    // console.log('added pad using Metis without whitelist');
 
-    console.log('adding pad using Metis with whitelist...');
-    await BasicModel.connect(signer).addPad(
-        basic_metis_with_whitelist.tokens,
-        basic_metis_with_whitelist.adminAddress,
-        basic_metis_with_whitelist.time,
-        basic_metis_with_whitelist.decimals,
-        basic_metis_with_whitelist._salesAmount,
-        basic_metis_with_whitelist._maxPerUser,
-        basic_metis_with_whitelist._price,
-        basic_metis_with_whitelist._minStakedCap,
-        basic_metis_with_whitelist._maxStakedCap,
-        basic_metis_with_whitelist._isWhitelist
-    );
-    console.log('added pad using Metis with whitelist');
+    // console.log('adding pad using Metis with whitelist...');
+    // await BasicModel.connect(signer).addPad(
+    //     basic_metis_with_whitelist.tokens,
+    //     basic_metis_with_whitelist.adminAddress,
+    //     basic_metis_with_whitelist.time,
+    //     basic_metis_with_whitelist.decimals,
+    //     basic_metis_with_whitelist._salesAmount,
+    //     basic_metis_with_whitelist._maxPerUser,
+    //     basic_metis_with_whitelist._price,
+    //     basic_metis_with_whitelist._minStakedCap,
+    //     basic_metis_with_whitelist._maxStakedCap,
+    //     basic_metis_with_whitelist._isWhitelist
+    // );
+    // console.log('added pad using Metis with whitelist');
 
 }
 

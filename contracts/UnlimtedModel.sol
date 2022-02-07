@@ -158,6 +158,15 @@ contract UnlimitedModel is Ownable {
         pad.stakedToken.safeTransfer(msg.sender, _amount);
         emit Claim(msg.sender, _pid, _amount);
     }
+    
+    struct Multiplier {
+        uint256 multiplier50;
+        uint256 multiplier100;
+        uint256 multiplier250;
+        uint256 multiplier500;
+        uint256 multiplier1000;
+        uint256 multiplier1500;
+    }
 
     function cash(uint256 _pid) public {
         PadInfo storage pad = padInfo[_pid];
@@ -171,19 +180,26 @@ contract UnlimitedModel is Ownable {
         pad.cashedAmount = pad.cashedAmount.add(user.allocation);
         uint256 funds = 0;
         if (address(pad.paymentToken) != address(0)) {
-            uint256 multiplier = pad.stakedAmount.div(pad.maxStakedCap);
+            Multiplier memory multiplier = Multiplier(
+                pad.maxStakedCap.mul(50),
+                pad.maxStakedCap.mul(100),
+                pad.maxStakedCap.mul(250),
+                pad.maxStakedCap.mul(500),
+                pad.maxStakedCap.mul(1000),
+                pad.maxStakedCap.mul(1500)
+            );
             uint256 feeRate = multiplierFeeRate[0];
-            if (multiplier > 50) {
+            if (pad.stakedAmount > multiplier.multiplier50) {
                 feeRate = multiplierFeeRate[50];
-            } else if (multiplier > 100) {
+            } else if (pad.stakedAmount > multiplier.multiplier100) {
                 feeRate = multiplierFeeRate[100];
-            } else if (multiplier > 250) {
+            } else if (pad.stakedAmount > multiplier.multiplier250) {
                 feeRate = multiplierFeeRate[250];
-            } else if (multiplier > 500) {
+            } else if (pad.stakedAmount > multiplier.multiplier500) {
                 feeRate = multiplierFeeRate[500];
-            } else if (multiplier > 1000) {
+            } else if (pad.stakedAmount > multiplier.multiplier1000) {
                 feeRate = multiplierFeeRate[1000];
-            } else if (multiplier > 1500) {
+            } else if (pad.stakedAmount > multiplier.multiplier1500) {
                 feeRate = multiplierFeeRate[1500];
             }
             funds = user.allocation
