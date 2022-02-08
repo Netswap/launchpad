@@ -189,20 +189,20 @@ async function main() {
     );
     console.log('added pad using NETT without whitelist');
 
-    console.log('adding pad using NETT with whitelist...');
-    await BasicModel.connect(signer).addPad(
-        basic_nett_with_whitelist.tokens,
-        basic_nett_with_whitelist.adminAddress,
-        basic_nett_with_whitelist.time,
-        basic_nett_with_whitelist.decimals,
-        basic_nett_with_whitelist._salesAmount,
-        basic_nett_with_whitelist._maxPerUser,
-        basic_nett_with_whitelist._price,
-        basic_nett_with_whitelist._minStakedCap,
-        basic_nett_with_whitelist._maxStakedCap,
-        basic_nett_with_whitelist._isWhitelist
-    );
-    console.log('added pad using NETT with whitelist');
+    // console.log('adding pad using NETT with whitelist...');
+    // await BasicModel.connect(signer).addPad(
+    //     basic_nett_with_whitelist.tokens,
+    //     basic_nett_with_whitelist.adminAddress,
+    //     basic_nett_with_whitelist.time,
+    //     basic_nett_with_whitelist.decimals,
+    //     basic_nett_with_whitelist._salesAmount,
+    //     basic_nett_with_whitelist._maxPerUser,
+    //     basic_nett_with_whitelist._price,
+    //     basic_nett_with_whitelist._minStakedCap,
+    //     basic_nett_with_whitelist._maxStakedCap,
+    //     basic_nett_with_whitelist._isWhitelist
+    // );
+    // console.log('added pad using NETT with whitelist');
 
     // console.log('adding pad using Metis without whitelist');
     // await BasicModel.connect(signer).addPad(

@@ -1,0 +1,12 @@
+{
+    "0x2bd9e5da0c3ccd017eacbe7420180faadfb5a0b7": {
+        "name": "TST2 project",
+        "description": "TST description",
+        "links": {
+            "github": "https://github.com",
+            "twitter": "https://twitter.com"
+        },
+        "website": "https://tst.com",
+        "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/5393.png"
+    }
+}

@@ -189,18 +189,18 @@ contract UnlimitedModel is Ownable {
                 pad.maxStakedCap.mul(1500)
             );
             uint256 feeRate = multiplierFeeRate[0];
-            if (pad.stakedAmount > multiplier.multiplier50) {
-                feeRate = multiplierFeeRate[50];
-            } else if (pad.stakedAmount > multiplier.multiplier100) {
-                feeRate = multiplierFeeRate[100];
-            } else if (pad.stakedAmount > multiplier.multiplier250) {
-                feeRate = multiplierFeeRate[250];
-            } else if (pad.stakedAmount > multiplier.multiplier500) {
-                feeRate = multiplierFeeRate[500];
+            if (pad.stakedAmount > multiplier.multiplier1500) {
+                feeRate = multiplierFeeRate[1500];
             } else if (pad.stakedAmount > multiplier.multiplier1000) {
                 feeRate = multiplierFeeRate[1000];
-            } else if (pad.stakedAmount > multiplier.multiplier1500) {
-                feeRate = multiplierFeeRate[1500];
+            } else if (pad.stakedAmount > multiplier.multiplier500) {
+                feeRate = multiplierFeeRate[500];
+            } else if (pad.stakedAmount > multiplier.multiplier250) {
+                feeRate = multiplierFeeRate[250];
+            } else if (pad.stakedAmount > multiplier.multiplier100) {
+                feeRate = multiplierFeeRate[100];
+            } else if (pad.stakedAmount > multiplier.multiplier50) {
+                feeRate = multiplierFeeRate[50];
             }
             funds = user.allocation
                     .mul(pad.price)

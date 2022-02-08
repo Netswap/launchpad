@@ -24,8 +24,8 @@ async function main() {
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 5 * 60,
-            5 * 60,
-            30,
+            20 * 60,
+            20 * 60,
             20 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
