@@ -1,12 +1,15 @@
 {
     "0x2bd9e5da0c3ccd017eacbe7420180faadfb5a0b7": {
-        "name": "TST2 project",
-        "description": "TST description",
+        "name": "Metauce",
+        "description": "Metauce is a new generation P2E game with galaxy explorer and mining.",
         "links": {
-            "github": "https://github.com",
-            "twitter": "https://twitter.com"
+            "github": "",
+            "discord": "https://discord.gg/5c9CP6AuWs",
+            "mediuem": "https://medium.com/@metauce",
+            "telegram": "https://t.me/metauce",
+            "twitter": "https://twitter.com/metauce"
         },
-        "website": "https://tst.com",
-        "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/5393.png"
+        "website": "https://metauce.org/",
+        "logo": "https://metauce.org/image/logo.png"
     }
 }
