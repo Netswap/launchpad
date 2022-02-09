@@ -384,7 +384,10 @@ contract UnlimitedModel is Ownable {
 
     function withdrawRemainingSaleToken(uint256 _pid, address _recipient) external onlyAdmin onlyPadAdmin(_pid) {
         PadInfo storage pad = padInfo[_pid];
-        require(padTime[_pid].cashingEndTime < block.timestamp, "not ended");
+        require(padTime[_pid].stakingEndTime < block.timestamp, "staking");
+        if (padStatus(_pid) == PadStatus.Success) {
+            require(padTime[_pid].cashingEndTime < block.timestamp, "not ended");
+        }
         padVault[_pid].saleTokenVault.withdrawRemaining(_recipient);
         emit WithdrawSaleToken(msg.sender, _recipient, pad.saleToken.balanceOf(address(padVault[_pid].saleTokenVault)));
     } 
