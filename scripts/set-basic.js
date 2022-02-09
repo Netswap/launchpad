@@ -24,21 +24,21 @@ async function main() {
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 5 * 60,
-            20 * 60,
+            24 * 60 * 60,
             20 * 60,
             20 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
         // 10000 TST2
         _salesAmount: '10000000000000000000000',
-        // 100 NETT
-        _maxPerUser: '100000000000000000000',
+        // 10 NETT
+        _maxPerUser: '10000000000000000000',
         // $2 * 1e18
         _price: '2000000000000000000',
-        // 100 NETT
-        _minStakedCap: '100000000000000000000',
-        // 1000 NETT
-        _maxStakedCap: '1000000000000000000000',
+        // 10 NETT
+        _minStakedCap: '10000000000000000000',
+        // 10 NETT
+        _maxStakedCap: '1000000000000000000',
         _isWhitelist: false
     }
 

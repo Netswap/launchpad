@@ -6,6 +6,9 @@
   "scripts": {
     "test": "hardhat test",
     "compile": "hardhat compile",
+    "deploy-basic": "hardhat run scripts/deploy-prod-basic.js --network mainnet",
+    "deploy-unlimited": "hardhat run scripts/deploy-prod-unlimited.js --network mainnet",
+    "set-metauce": "hardhat run scripts/set-metauce.js --network mainnet",
     "deploy-basic-test": "hardhat run scripts/deploy-basic.js --network testnet",
     "set-basic-test": "hardhat run scripts/set-basic.js --network testnet",
     "deploy-unlimted-test": "hardhat run scripts/deploy-unlimited.js --network testnet",
