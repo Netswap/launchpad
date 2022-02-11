@@ -24,7 +24,7 @@ async function main() {
         adminAddress: signer.address,
         time: [
             Math.round(Date.now() / 1000) + 5 * 60,
-            20 * 60,
+            24*60 * 60,
             20 * 60,
             20 * 60
         ],
@@ -169,35 +169,35 @@ async function main() {
 
     const UnlimitedModel = await UnlimitedModelFactory.attach(unlimited.UnlimitedModel);
 
-    // console.log('adding pad using NETT without whitelist...');
-    // await UnlimitedModel.connect(signer).addPad(
-    //     unlimited_nett_without_whitelist.tokens,
-    //     unlimited_nett_without_whitelist.adminAddress,
-    //     unlimited_nett_without_whitelist.time,
-    //     unlimited_nett_without_whitelist.decimals,
-    //     unlimited_nett_without_whitelist._salesAmount,
-    //     unlimited_nett_without_whitelist._price,
-    //     unlimited_nett_without_whitelist._minStakedUserAmount,
-    //     unlimited_nett_without_whitelist._minStakedCap,
-    //     unlimited_nett_without_whitelist._maxStakedCap,
-    //     unlimited_nett_without_whitelist._isWhitelist
-    // );
-    // console.log('added pad using NETT without whitelist');
-
-    console.log('adding pad using NETT with whitelist...');
+    console.log('adding pad using NETT without whitelist...');
     await UnlimitedModel.connect(signer).addPad(
-        unlimited_nett_with_whitelist.tokens,
-        unlimited_nett_with_whitelist.adminAddress,
-        unlimited_nett_with_whitelist.time,
-        unlimited_nett_with_whitelist.decimals,
-        unlimited_nett_with_whitelist._salesAmount,
-        unlimited_nett_with_whitelist._price,
-        unlimited_nett_with_whitelist._minStakedUserAmount,
-        unlimited_nett_with_whitelist._minStakedCap,
-        unlimited_nett_with_whitelist._maxStakedCap,
-        unlimited_nett_with_whitelist._isWhitelist
+        unlimited_nett_without_whitelist.tokens,
+        unlimited_nett_without_whitelist.adminAddress,
+        unlimited_nett_without_whitelist.time,
+        unlimited_nett_without_whitelist.decimals,
+        unlimited_nett_without_whitelist._salesAmount,
+        unlimited_nett_without_whitelist._price,
+        unlimited_nett_without_whitelist._minStakedUserAmount,
+        unlimited_nett_without_whitelist._minStakedCap,
+        unlimited_nett_without_whitelist._maxStakedCap,
+        unlimited_nett_without_whitelist._isWhitelist
     );
-    console.log('added pad using NETT with whitelist');
+    console.log('added pad using NETT without whitelist');
+
+    // console.log('adding pad using NETT with whitelist...');
+    // await UnlimitedModel.connect(signer).addPad(
+    //     unlimited_nett_with_whitelist.tokens,
+    //     unlimited_nett_with_whitelist.adminAddress,
+    //     unlimited_nett_with_whitelist.time,
+    //     unlimited_nett_with_whitelist.decimals,
+    //     unlimited_nett_with_whitelist._salesAmount,
+    //     unlimited_nett_with_whitelist._price,
+    //     unlimited_nett_with_whitelist._minStakedUserAmount,
+    //     unlimited_nett_with_whitelist._minStakedCap,
+    //     unlimited_nett_with_whitelist._maxStakedCap,
+    //     unlimited_nett_with_whitelist._isWhitelist
+    // );
+    // console.log('added pad using NETT with whitelist');
 
     // console.log('adding pad using Metis without whitelist...');
     // await UnlimitedModel.connect(signer).addPad(

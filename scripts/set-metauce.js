@@ -23,11 +23,11 @@ async function main() {
             // start time Feb.10 UTC 15:00
             1644505200,
             // staking period, 2 days
-            172800,
+            2 * 24 * 60 * 60,
             // vesting period, 7 days
-            604800,
+            7 * 24 * 60 * 60,
             // cashing period, 2 days
-            172800
+            2 * 24 * 60 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
         // 750,000 MINES
@@ -53,11 +53,11 @@ async function main() {
             // start time Feb.10 UTC 15:00
             1644505200,
             // staking period, 2 days
-            172800,
+            2 * 24 * 60 * 60,
             // vesting period, 7 days
-            604800,
+            7 * 24 * 60 * 60,
             // cashing period, 2 days
-            172800
+            2 * 24 * 60 * 60
         ],
         decimals: ['1000000000000000000', '1000000'],
         // 1,750,000 MINES

@@ -6,7 +6,7 @@ const TST2 = '0x2BD9e5Da0c3cCD017eaCbE7420180FaADFB5a0b7';
 // TUSDT
 const TUSDT = '0xF02Efd44B57d143c38A329dD299683bf24Cf8aE0';
 // NETT
-const NETT = '0x8127bd4C0e71d5B1f4B28788bb8C4708b51934F9';
+const NETT = '0xE8952066fbDdA5c305d996AD3b1E416Fa46d09cb';
 // Metis
 const Metis = '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000';
 
@@ -38,7 +38,7 @@ async function main() {
         // 10 NETT
         _minStakedCap: '10000000000000000000',
         // 10 NETT
-        _maxStakedCap: '1000000000000000000',
+        _maxStakedCap: '10000000000000000000',
         _isWhitelist: false
     }
 
